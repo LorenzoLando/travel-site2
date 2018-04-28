@@ -39,6 +39,11 @@ gulp.task('watch', function() {
   watch('./app/assets/styles/**/*.css', function() {
     gulp.start('cssInject');
   });
+// guardo tutti i file .js contenuti nella cartella scripts
+  watch('./app/assets/scripts/**/*.js', function() {
+ // se vengono modificati e salvati parte la task scriptsRefresh definita in questo file 
+    gulp.start('scriptsRefresh');
+  })
 
 });
 
@@ -52,4 +57,10 @@ gulp.task('cssInject',['styles'] ,function(){
  return  gulp.src('./app/temp/styles/styles.css')
           .pipe(browserSync.stream());
 
+});
+
+// la task scriptRefresh parte solo dopo completamento si [scripts]
+gulp.task('scriptsRefresh',['scripts'], function() {
+  // reload brvser sinc in questa maniera browser sync funziona anche per il file .js
+  browserSync.reload();
 });
