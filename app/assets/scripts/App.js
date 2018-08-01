@@ -1,14 +1,19 @@
-// in questo progetto usando una versione vecchia di webpack per far andare il comando dobbiamo usare nella console
-// npm run webpack
-// importiamo jquery
 var $ = require('jquery');
-// importiamo il contenuto del file Person.js
-var Person = require('./modules/Person'); 
+import Person from './modules/Person';
 
-// con la parola chiave new si crea una nuova istanza dell`oggetto Person
-var lorenzo = new Person("Lorenzo Lando", "red");
-var jane  = new Person("Jane Smith", "yellow");
+class Adult extends Person {
+  payTaxes() {
+    console.log(this.name + " now owes $0 in taxes.");
+  }
+}
 
-lorenzo.greet(); 
+alert("ABC 321");
+
+var john = new Person("John Doe", "blue");
+john.greet();
+
+var jane = new Adult("Jane Smith", "orange");
 jane.greet();
+jane.payTaxes();
 
+$("h1").remove();

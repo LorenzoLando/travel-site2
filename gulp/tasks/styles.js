@@ -9,14 +9,10 @@ hexrgba = require('postcss-hexrgba');
 
 gulp.task('styles', function() {
   return gulp.src('./app/assets/styles/styles.css')
-  .pipe(postcss([cssImport, mixins, cssvars, nested, hexrgba, autoprefixer]))
-  //su errore ficiamo a gulp di finire l attivita` specificata senza uscire dalla modalita` watch
-  .on('error', function(errorInfo){
-  	//logga nella console info utili per capire dove e stato l errore
-  	console.log(errorInfo.toString());
-  	//questo permette di specificare quale errore vogliamo portare a termine
-  	this.emit('end');
-
-  })
-  .pipe(gulp.dest('./app/temp/styles'));
+    .pipe(postcss([cssImport, mixins, cssvars, nested, hexrgba, autoprefixer]))
+    .on('error', function(errorInfo) {
+      console.log(errorInfo.toString());
+      this.emit('end');
+    })
+    .pipe(gulp.dest('./app/temp/styles'));
 });
