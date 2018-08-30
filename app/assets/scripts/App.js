@@ -1,19 +1,6 @@
-var $ = require('jquery');
-import Person from './modules/Person';
+//metodo interno a es6 per importare file.js
+import MobileMenu from './modules/MobileMenu';
 
-class Adult extends Person {
-  payTaxes() {
-    console.log(this.name + " now owes $0 in taxes.");
-  }
-}
-
-alert("ABC 321");
-
-var john = new Person("John Doe", "blue");
-john.greet();
-
-var jane = new Adult("Jane Smith", "orange");
-jane.greet();
-jane.payTaxes();
-
-$("h1").remove();
+//creiamo una nuova istance e la diamo a una variabile
+	//mobileMenu e una nuova instance della classe MobileMenu();
+var mobileMenu = new MobileMenu();
