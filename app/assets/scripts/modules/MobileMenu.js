@@ -7,19 +7,21 @@ class MobileMenu {
 	constructor() {
 	//seleziono l `icona che viene premuta quando sono su piccoli schermi`
 	 this.menuIcon = $('.site-header__menu-icon');
-	 //questo e il div nascosto che cotiene il menu`
+	 //questo e il div nascosto che contiene il menu`
 	 this.menuContent = $('.site-header__menu-content');
-	 //fire up l evento	
+	 //per fare in modo che l`evento sia richiamato quando il browser carica dobbiamo richiamare il metodo 
 	 this.events();
 	}
     //definisco l`evento
 	events() {
-	this.menuIcon.click(this.toggleTheMenu.bind());
+	this.menuIcon.click(this.toggleTheMenu);
+	
 	}
-	//definisco l azione successiva all evento
+	//definisco la funzione che avverra` on click
 	toggleTheMenu() {
-		
+	
 	 this.menuContent.toggleClass(".site-header__menu-content--is-visible");
+
 	}
 
 }

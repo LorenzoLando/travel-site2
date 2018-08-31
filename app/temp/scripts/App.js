@@ -44,7 +44,7 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var _MobileMenu = __webpack_require__(1);
 
@@ -53,7 +53,10 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//creiamo una nuova istance e la diamo a una variabile
-	var mobileMenu = new _MobileMenu2.default(); //MobileMenu dopo import e il nome della var
+	//mobileMenu e una nuova instance della classe MobileMenu();
+	var mobileMenu = new _MobileMenu2.default(); //metodo interno a es6 per importare file.js
+
+	alert("ciao");
 
 /***/ }),
 /* 1 */
@@ -65,7 +68,8 @@
 		value: true
 	});
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); //importo jquery e lo do al simbolo del dollaro cosi posso utilizzarlo normalmente
+
 
 	var _jquery = __webpack_require__(2);
 
@@ -81,8 +85,9 @@
 
 			//seleziono l `icona che viene premuta quando sono su piccoli schermi`
 			this.menuIcon = (0, _jquery2.default)('.site-header__menu-icon');
+			//questo e il div nascosto che contiene il menu`
 			this.menuContent = (0, _jquery2.default)('.site-header__menu-content');
-			//fire up l evento	
+			//per fare in modo che l`evento sia richiamato quando il browser carica dobbiamo richiamare il metodo 
 			this.events();
 		}
 		//definisco l`evento
@@ -93,7 +98,7 @@
 			value: function events() {
 				this.menuIcon.click(this.toggleTheMenu);
 			}
-			//definisco l azione successiva all evento
+			//definisco la funzione che avverra` on click
 
 		}, {
 			key: 'toggleTheMenu',
@@ -107,6 +112,7 @@
 	}();
 
 	//sistema interno a es6 per esportare classi 
+	//export default nomeDellaClasse
 
 
 	exports.default = MobileMenu;
