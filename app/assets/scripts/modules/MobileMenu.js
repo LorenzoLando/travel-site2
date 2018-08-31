@@ -5,6 +5,8 @@ import $ from 'jquery';
 class MobileMenu {
 
 	constructor() {
+	//seleziono l`intero site-header per aggiungere il gradiente per il menu mobile
+	this.siteHeader = $('.site-header');
 	//seleziono l `icona che viene premuta quando sono su piccoli schermi`
 	 this.menuIcon = $('.site-header__menu-icon');
 	 //questo e il div nascosto che contiene il menu`
@@ -14,14 +16,17 @@ class MobileMenu {
 	}
     //definisco l`evento
 	events() {
-	this.menuIcon.click(this.toggleTheMenu);
+	//.bind(this) bind identifica cosa significa this al momento, senza bind togglethemenu avrebbe puntato sul menu content
+	//scriveno this invece richiama il this iniziale che punta all`oggetto
+	this.menuIcon.click(this.toggleTheMenu.bind(this));
+
 	
 	}
 	//definisco la funzione che avverra` on click
 	toggleTheMenu() {
 	
-	 this.menuContent.toggleClass(".site-header__menu-content--is-visible");
-
+	 this.menuContent.toggleClass("site-header__menu-content--is-visible");
+	 this.siteHeader.toggleClass("site-header--is-expanded");
 	}
 
 }

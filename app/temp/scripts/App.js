@@ -44,7 +44,7 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var _MobileMenu = __webpack_require__(1);
 
@@ -55,8 +55,6 @@
 	//creiamo una nuova istance e la diamo a una variabile
 	//mobileMenu e una nuova instance della classe MobileMenu();
 	var mobileMenu = new _MobileMenu2.default(); //metodo interno a es6 per importare file.js
-
-	alert("ciao");
 
 /***/ }),
 /* 1 */
@@ -83,6 +81,8 @@
 		function MobileMenu() {
 			_classCallCheck(this, MobileMenu);
 
+			//seleziono l`intero site-header per aggiungere il gradiente per il menu mobile
+			this.siteHeader = (0, _jquery2.default)('.site-header');
 			//seleziono l `icona che viene premuta quando sono su piccoli schermi`
 			this.menuIcon = (0, _jquery2.default)('.site-header__menu-icon');
 			//questo e il div nascosto che contiene il menu`
@@ -96,7 +96,9 @@
 		_createClass(MobileMenu, [{
 			key: 'events',
 			value: function events() {
-				this.menuIcon.click(this.toggleTheMenu);
+				//.bind(this) bind identifica cosa significa this al momento, senza bind togglethemenu avrebbe puntato sul menu content
+				//scriveno this invece richiama il this iniziale che punta all`oggetto
+				this.menuIcon.click(this.toggleTheMenu.bind(this));
 			}
 			//definisco la funzione che avverra` on click
 
@@ -104,7 +106,8 @@
 			key: 'toggleTheMenu',
 			value: function toggleTheMenu() {
 
-				this.menuContent.toggleClass(".site-header__menu-content--is-visible");
+				this.menuContent.toggleClass("site-header__menu-content--is-visible");
+				this.siteHeader.toggleClass("site-header--is-expanded");
 			}
 		}]);
 

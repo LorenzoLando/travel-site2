@@ -3,13 +3,22 @@
   position: absolute;
   width: 100%;
   z-index: 2;
+  /*quando background-color viene modificato avviene con una trasizione ease-out di 3 millisecondi*/
+  transition: background-color .3s ease-out;
+
+  &--is-expanded {
+    background-color: rgba($mainBlue, .55);
+  }
   
   @mixin atMedium {
     background-color: rgba($mainBlue, .3);
   }
 
   &__btn-container {
-    float: right;
+    @mixin atMedium {
+      float: right;
+    }
+    
   }
 
   &__logo {
@@ -45,10 +54,25 @@
   }
 
   &__menu-content {
-    display: none;
+    opacity: 0;
+    transition: opacity .3s ease-out;
+    position: relative;
+    /*&__menu-content esiste anche a opacity 0 ma con z-index si trova sotto tuttto e non puo essere cliccato*/
+    z-index: -10;
+    padding-top: 100px;
+    text-align: center;
 
     @mixin atMedium {
       display: block;
+      padding-top: 0;
+    }
+
+    &--is-visible {
+      opacity: 1;
+      /*z-indes:1 fa si che il content torni sopra gli altri elelementi e sia cliccabile*/
+      z-index: 1;
+      }
     }
   }
-}
+
+ 
