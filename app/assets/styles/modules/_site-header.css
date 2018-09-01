@@ -42,35 +42,106 @@
 
   &__menu-icon {
     width: 20px;
-    height: 20px;
-    background-color: #FFF;
+    height: 19px;
     position: absolute;
+    z-index: 10;
     top: 10px;
     right: 10px;
+   
+    /*stile per la banda superiore menu hambuger*/
+      /*::before crea uno pseudo elemento in css che viene aggiunto alla pagina */
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 20px;
+      height: 3px;
+      background-color: #FFF;
+      /*l origini della animazione e l inizio dell elemento*/
+      transform-origin: 0 0;
+      /*vogliamo che l`animazione sia transizionata e fluida*/
+      transition: transform .3s ease-out;
+    }
+
+    /*stile per la banda di mezzo menu hambuger*/
+    &__middle {
+      position: absolute;
+      top: 8px;
+      left: 0;
+      width: 20px;
+      height: 3px;
+      background-color: #FFF;
+      /*vogliamo che l`opacita` sia transizionata e fluida*/
+      transition: all .3s ease-out;
+      /*vogliamo che l`animazione parta da sinistra*/
+      transform-origin: 0 50%;
+    }
+
+    /*stile per la banda di inferiore menu hambuger*/
+    &::after {
+      content: "";
+      position: absolute;
+      top: 16px;
+      left: 0;
+      width: 20px;
+      height: 3px;
+      background-color: #FFF;
+      /*l origini della animazione e l inizio dell elemento*/
+      transform-origin: 0 100%;
+       /*vogliamo che l`animazione sia transizionata e fluida*/
+      transition: transform .3s ease-out;
+
+    }
 
     @mixin atMedium {
       display: none;
     }
   }
+  /*la classe che modifica il sandwich menu in una x*/
+  &__menu-icon--close-x {
+    /*//ruoto la banda superiore di 45 gradi*/
+    &::before {
+      transform: rotate(45deg) scaleX(1.25);
+    }
+
+    /*nascondo la banda di mezzo*/
+    .site-header__menu-icon__middle {
+      opacity: 0;
+      /*vogliamo anche che la banda si riduca gradualmente a 0*/
+      transform: scaleX(0);
+    }
+
+    /*//ruoto la banda inferiore di 45 gradi antiorari*/
+    /*//la sposto di 1px perche era leggermente spostata*/
+     &::after {
+      transform: rotate(-45deg) scaleX(1.25) translateY(1px);
+    }
+
+  }
 
   &__menu-content {
     opacity: 0;
-    transition: opacity .3s ease-out;
+    transform: scale(1.2);
+    transition: all .3s ease-out;
     position: relative;
     /*&__menu-content esiste anche a opacity 0 ma con z-index si trova sotto tuttto e non puo essere cliccato*/
     z-index: -10;
-    padding-top: 100px;
+    padding-top: 90px;
     text-align: center;
 
     @mixin atMedium {
-      display: block;
+      opacity: 1;
+      z-index: 1;
       padding-top: 0;
+      transform: scale(1);
     }
 
     &--is-visible {
       opacity: 1;
       /*z-indes:1 fa si che il content torni sopra gli altri elelementi e sia cliccabile*/
       z-index: 1;
+      transform: scale(1);
       }
     }
   }

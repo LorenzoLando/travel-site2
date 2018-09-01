@@ -1,11 +1,17 @@
 .primary-nav {
 
+  padding-top: 10px;
 
+  @mixin atMedium {
+    padding-top: 0;
+  }
+  
   &--pull-right {
     @mixin atMedium {
       float: right;
     }
     
+
   }
 
   ul {
@@ -37,6 +43,16 @@
     font-weight: 300;
     text-decoration: none;
     display: block;
-    padding: 12px 0;
+    padding: 5px 8px;
+    font-size: .8rem;
+    /*mainblue visibile di 30%*/
+    background-color: rgba($mainBlue, .5);
+
+    @mixin atMedium {
+      font-size: 1rem;
+      padding: 12px 0;
+      /*background trasparente per larger screen*/
+      background-color: transparent;
+    }
   }
 }

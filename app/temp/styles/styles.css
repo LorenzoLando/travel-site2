@@ -1125,12 +1125,55 @@ Instead edit gulp/templates/sprite */
 
 .site-header__menu-icon {
   width: 20px;
-  height: 20px;
-  background-color: #FFF;
+  height: 19px;
   position: absolute;
+  z-index: 10;
   top: 10px;
   right: 10px;
 }
+
+/*::before crea uno pseudo elemento in css che viene aggiunto alla pagina */
+
+.site-header__menu-icon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 3px;
+  background-color: #FFF;/*l origini della animazione e l inizio dell elemento*/
+  transform-origin: 0 0;/*vogliamo che l`animazione sia transizionata e fluida*/
+  transition: transform .3s ease-out;
+}
+
+/*stile per la banda di mezzo menu hambuger*/
+
+.site-header__menu-icon__middle {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 20px;
+  height: 3px;
+  background-color: #FFF;/*vogliamo che l`opacita` sia transizionata e fluida*/
+  transition: all .3s ease-out;/*vogliamo che l`animazione parta da sinistra*/
+  transform-origin: 0 50%;
+}
+
+/*stile per la banda di inferiore menu hambuger*/
+
+.site-header__menu-icon::after {
+  content: "";
+  position: absolute;
+  top: 16px;
+  left: 0;
+  width: 20px;
+  height: 3px;
+  background-color: #FFF;/*l origini della animazione e l inizio dell elemento*/
+  transform-origin: 0 100%;/*vogliamo che l`animazione sia transizionata e fluida*/
+  transition: transform .3s ease-out;
+}
+
+/*stile per la banda superiore menu hambuger*/
 
 @media (min-width: 800px) {
 
@@ -1139,26 +1182,66 @@ Instead edit gulp/templates/sprite */
   }
 }
 
+/*la classe che modifica il sandwich menu in una x*/
+
+.site-header__menu-icon--close-x {/*//ruoto la banda inferiore di 45 gradi antiorari*/
+}
+
+/*//ruoto la banda superiore di 45 gradi*/
+
+.site-header__menu-icon--close-x::before {
+  transform: rotate(45deg) scaleX(1.25);
+}
+
+/*nascondo la banda di mezzo*/
+
+.site-header__menu-icon--close-x .site-header__menu-icon__middle {
+  opacity: 0;/*vogliamo anche che la banda si riduca gradualmente a 0*/
+  transform: scaleX(0);
+}
+
+/*//la sposto di 1px perche era leggermente spostata*/
+
+.site-header__menu-icon--close-x::after {
+  transform: rotate(-45deg) scaleX(1.25) translateY(1px);
+}
+
 .site-header__menu-content {
   opacity: 0;
-  transition: opacity .3s ease-out;
+  transform: scale(1.2);
+  transition: all .3s ease-out;
   position: relative;/*&__menu-content esiste anche a opacity 0 ma con z-index si trova sotto tuttto e non puo essere cliccato*/
   z-index: -10;
-  padding-top: 100px;
+  padding-top: 90px;
   text-align: center;
 }
 
 @media (min-width: 800px) {
 
   .site-header__menu-content {
-    display: block;
+    opacity: 1;
+    z-index: 1;
     padding-top: 0;
+    transform: scale(1);
   }
 }
 
 .site-header__menu-content--is-visible {
   opacity: 1;/*z-indes:1 fa si che il content torni sopra gli altri elelementi e sia cliccabile*/
   z-index: 1;
+  transform: scale(1);
+}
+
+.primary-nav {
+
+  padding-top: 10px;
+}
+
+@media (min-width: 800px) {
+
+  .primary-nav {
+    padding-top: 0;
+  }
 }
 
 @media (min-width: 800px) {
@@ -1210,5 +1293,16 @@ Instead edit gulp/templates/sprite */
   font-weight: 300;
   text-decoration: none;
   display: block;
-  padding: 12px 0;
+  padding: 5px 8px;
+  font-size: .8rem;/*mainblue visibile di 30%*/
+  background-color: rgba(47,85,114, .5);
+}
+
+@media (min-width: 800px) {
+
+  .primary-nav a {
+    font-size: 1rem;
+    padding: 12px 0;/*background trasparente per larger screen*/
+    background-color: transparent;
+  }
 }

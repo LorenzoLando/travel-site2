@@ -24,9 +24,12 @@ class MobileMenu {
 	}
 	//definisco la funzione che avverra` on click
 	toggleTheMenu() {
-	
+	//il contenuto del menu e reso vusibile
 	 this.menuContent.toggleClass("site-header__menu-content--is-visible");
+	 //il contenuto ha un background che lo rende leggibile
 	 this.siteHeader.toggleClass("site-header--is-expanded");
+	 //l`icona viene tramutata in una x
+	 this.menuIcon.toggleClass("site-header__menu-icon--close-x");
 	}
 
 }
