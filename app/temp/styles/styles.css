@@ -1089,8 +1089,13 @@ Instead edit gulp/templates/sprite */
 
 @media (min-width: 800px) {
 
-  .site-header {
+  .site-header {/*header stiky per schermi larghi*/
+    position: fixed;
     background-color: rgba(47,85,114, .3);
+  }
+
+  .site-header--dark {
+    background-color: rgba(23, 51, 72, .85);
   }
 }
 
@@ -1106,6 +1111,7 @@ Instead edit gulp/templates/sprite */
   top: 0;
   left: 50%;
   transform: translateX(-50%) scale(.8);
+  transition: transform .3s ease-out;
   transform-origin: 50% 0;
   background-color: #2f5572;
   padding: 25px 36px;
@@ -1115,7 +1121,12 @@ Instead edit gulp/templates/sprite */
 
   .site-header__logo {
     left: auto;
-    transform: translateX(0);
+    transform: translateX(0);/*utilizzo i descendant selector in pratica selezione & che qui corrismponde al logo solo quando la classe 
+      site-header--dark e utilizzata*/
+  }
+
+  .site-header--dark .site-header__logo {
+    transform: scale(.57);
   }
 }
 
