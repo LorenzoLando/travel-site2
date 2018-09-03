@@ -1306,3 +1306,16 @@ Instead edit gulp/templates/sprite */
     background-color: transparent;
   }
 }
+
+.reveal-item {
+	opacity: 0;
+	/*vogliamo che quando gli elementi si rivelano lo facciano fluidi*/
+	transition: all 1.5s ease-out;
+	/*effetto zoom quando rivelo gli oggetti*/
+	transform: scale(1.15);
+}
+
+.reveal-item--is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
