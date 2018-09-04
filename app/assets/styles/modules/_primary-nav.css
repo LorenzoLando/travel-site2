@@ -53,6 +53,10 @@
       padding: 12px 0;
       /*background trasparente per larger screen*/
       background-color: transparent;
+      /*&.is-current-link a solo se ha una classe is-current-link*/
+      &.is-current-link {
+        color: #fabb69;
+      }
     }
   }
 }

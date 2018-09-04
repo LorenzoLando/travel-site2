@@ -1314,7 +1314,11 @@ Instead edit gulp/templates/sprite */
   .primary-nav a {
     font-size: 1rem;
     padding: 12px 0;/*background trasparente per larger screen*/
-    background-color: transparent;
+    background-color: transparent;/*&.is-current-link a solo se ha una classe is-current-link*/
+  }
+
+  .primary-nav a.is-current-link {
+    color: #fabb69;
   }
 }
 
