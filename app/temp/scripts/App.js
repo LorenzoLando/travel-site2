@@ -62,22 +62,27 @@
 
 	var _StickyHeader2 = _interopRequireDefault(_StickyHeader);
 
+	var _Modal = __webpack_require__(7);
+
+	var _Modal2 = _interopRequireDefault(_Modal);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//creiamo una nuova istance e la diamo a una variabile
 	//mobileMenu e una nuova instance della classe MobileMenu();
-	//importiamo jquery
+
+	//metodo interno a es6 per importare file.js
 	var mobileMenu = new _MobileMenu2.default();
 	//vogliamo che differeneti elementi abbiano differenti offset 	
 	//il primo e per i feature items 
 	//accetta due argomenti. l elemento selezionato e l offset
-
-	//metodo interno a es6 per importare file.js
+	//importiamo jquery
 	new _RevealOnScroll2.default((0, _jquery2.default)(".feature-item"), "85%");
 	//questo e per i testimonial
 	new _RevealOnScroll2.default((0, _jquery2.default)(".testimonial"), "60%");
 	//nuova istance della classe StickyHeader dopo averla importata
 	var stickyHeader = new _StickyHeader2.default();
+	var modal = new _Modal2.default();
 
 /***/ }),
 /* 1 */
@@ -11283,6 +11288,76 @@
 	}));
 
 
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _jquery = __webpack_require__(1);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var Modal = function () {
+		function Modal() {
+			_classCallCheck(this, Modal);
+
+			this.openModalButton = (0, _jquery2.default)(".open-modal");
+			this.modal = (0, _jquery2.default)(".modal");
+			this.closeModalButton = (0, _jquery2.default)(".modal__close");
+			this.events();
+		}
+
+		_createClass(Modal, [{
+			key: "events",
+			value: function events() {
+				//clicking the open modal button
+				//.bind(this) devo mantenere questo riferimento a this perche poi
+				//nella funzione di sotto this punta ad altro?
+				this.openModalButton.click(this.openModal.bind(this));
+				//clicki the x close modal button
+				this.closeModalButton.click(this.closeModal.bind(this));
+				//pushes the escape key
+				(0, _jquery2.default)(document).keyup(this.keyPressHandler.bind(this));
+			}
+		}, {
+			key: "keyPressHandler",
+			value: function keyPressHandler(e) {
+				//se il tasto premuto e escape
+				if (e.keyCode == 27) {
+					this.closeModal();
+				}
+			}
+		}, {
+			key: "openModal",
+			value: function openModal() {
+				this.modal.addClass("modal--is-visible");
+				// non vogliamo che il bottone get-in-touch quando clikkato 
+				//faccia scrollare su la pagina
+				return false;
+			}
+		}, {
+			key: "closeModal",
+			value: function closeModal() {
+				this.modal.removeClass("modal--is-visible");
+			}
+		}]);
+
+		return Modal;
+	}();
+
+	exports.default = Modal;
 
 /***/ })
 /******/ ]);
