@@ -1,11 +1,14 @@
 //vogliamo creare un oggetto che configuri webpack
 module.exports = {
   //indichiamo quale file webpack deve guardare per applicare le sue funzionalita`
-  entry: "./app/assets/scripts/App.js",
+  entry: {
+    App: "./app/assets/scripts/App.js",
+    Vendor: "./app/assets/scripts/Vendor.js"
+  },
   output: {
     //qui e dove vogliamo che il boudled file venga inserito
     path: "./app/temp/scripts",
-    filename: "App.js"
+    filename: "[name].js"
   },
   //da qui parte la configurazione di Babel
   module: {
